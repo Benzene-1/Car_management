@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(150))
     last_name = db.Column(db.String(150))
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+    
     ## User Type:
     # 1. Admin
     # 2. Buyer
