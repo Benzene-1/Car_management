@@ -1,0 +1,298 @@
+{% extends "modules/base.html" %} {% block title %} Create Listing {% endblock
+title %} {% block main_area %}
+<h1 class="mb-10">Edit Car - {{car}}</h1>
+<div class="container flex flex-col">
+  <form action="" method="post">
+    <div class="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
+      <div class="col-span-8 lg:col-span-12">
+        <div class="relative">
+          <input
+            required
+            id="title"
+            type="text"
+            name="title"
+            placeholder="title"
+            value="{{ car.title }}"
+            class="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          />
+          <label
+            for="title"
+            class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Car title
+          </label>
+        </div>
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <input
+            required
+            id="make"
+            type="text"
+            name="make"
+            placeholder="Make "
+            value="{{ car.make }}"
+            class="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          />
+          <label
+            for="make"
+            class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Make (Brand of the car)
+          </label>
+        </div>
+        <!-- End Rounded large basic input-->
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <input
+            required
+            id="model"
+            type="text"
+            name="model"
+            placeholder="model"
+            value="{{ car.model }}"
+            class="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          />
+          <label
+            for="model"
+            class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Car model
+          </label>
+        </div>
+        <!-- End Rounded large basic input-->
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <input
+            required
+            id="year"
+            type="number"
+            name="year"
+            value="{{ car.year }}"
+            placeholder="your name"
+            class="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          />
+          <label
+            for="year"
+            class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Year
+          </label>
+        </div>
+        <!-- End Rounded large basic input-->
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <input
+            required
+            id="price"
+            type="text"
+            name="price"
+            value="{{ car.price }}"
+            placeholder="Price"
+            class="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          />
+          <label
+            for="price"
+            class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Price
+          </label>
+        </div>
+        <!-- End Rounded large basic input-->
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <input
+            required
+            id="mileage"
+            type="number"
+            value="{{ car.mileage }}"
+            name="mileage"
+            placeholder="mileage"
+            class="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          />
+          <label
+            for="mileage"
+            class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Mileage
+          </label>
+        </div>
+        <!-- End Rounded large basic input-->
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <input
+            required
+            id="color"
+            type="text"
+            name="color"
+            value="{{ car.color }}"
+            placeholder="Color"
+            class="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          />
+          <label
+            for="color"
+            class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Color (Exterior color of the car)
+          </label>
+        </div>
+        <!-- End Rounded large basic input-->
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <select
+            id="transmission"
+            name="transmission"
+            required
+            class="relative w-full h-12 px-4 transition-all bg-white border rounded outline-none appearance-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white focus:border-emerald-500 focus:focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          >
+             <option value="" disabled></option>
+            <option value="Automatic" {% if car.transmission == "Automatic" %}selected{% endif %}>Automatic</option>
+            <option value="Manual" {% if car.transmission == "Manual" %}selected{% endif %}>Manual</option>
+          </select>
+          <label
+            for="transmission"
+            class="pointer-events-none absolute top-3 left-2 z-[1] px-2 text-base text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-valid:-top-2 peer-valid:text-xs peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Transmission Type
+          </label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="pointer-events-none absolute top-3.5 right-2 h-5 w-5 fill-slate-400 transition-all peer-focus:fill-emerald-500 peer-disabled:cursor-not-allowed"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-labelledby="title-11 description-11"
+            role="graphics-symbol"
+          >
+            <title id="title-11">Arrow Icon</title>
+            <desc id="description-11">Arrow icon of the select list.</desc>
+            <path
+              fill-rule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <select
+            id="Fuel"
+            name="fuel"
+            required
+            class="relative w-full h-12 px-4 transition-all bg-white border rounded outline-none appearance-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white focus:border-emerald-500 focus:focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          >
+            <option value="" disabled></option>
+            
+    <option value="Petrol" {% if car.fuel_type == "Petrol" %}selected{% endif %}>Petrol</option>
+    <option value="Diesel" {% if car.fuel_type == "Diesel" %}selected{% endif %}>Diesel</option>
+    <option value="Electric" {% if car.fuel_type == "Electric" %}selected{% endif %}>Electric</option>
+    <option value="Hybrid" {% if car.fuel_type == "Hybrid" %}selected{% endif %}>Hybrid</option>
+    <option value="LPG" {% if car.fuel_type == "LPG" %}selected{% endif %}>LPG</option>
+          </select>
+          <label
+            for="Fuel"
+            class="pointer-events-none absolute top-3 left-2 z-[1] px-2 text-base text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-valid:-top-2 peer-valid:text-xs peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Fuel Type
+          </label>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="pointer-events-none absolute top-3.5 right-2 h-5 w-5 fill-slate-400 transition-all peer-focus:fill-emerald-500 peer-disabled:cursor-not-allowed"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-labelledby="title-11 description-11"
+            role="graphics-symbol"
+          >
+            <title id="title-11">Arrow Icon</title>
+            <desc id="description-11">Arrow icon of the select list.</desc>
+            <path
+              fill-rule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <input
+            required
+            id="engine"
+            type="text"
+            name="engine"
+            value="{{ car.engine }}"
+            placeholder="Engine (CC)"
+            class="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          />
+          <label
+            for="engine"
+            class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-2 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Engine (CC)
+          </label>
+        </div>
+        <!-- End Rounded large basic input-->
+      </div>
+      <div class="col-span-4 lg:col-span-6">
+        <div class="relative">
+          <input
+            required
+            id="user"
+            type="text"
+            name="user"
+            placeholder="user"
+            disabled
+            value="{{ current_user }}"
+            class="relative w-full h-12 px-4 placeholder-transparent transition-all border rounded outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          />
+          <label
+            for="user"
+            class="cursor-text peer-focus:cursor-default peer-autofill:-top-2 absolute left-2 -top-4 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-base peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Owner
+          </label>
+        </div>
+        <!-- End Rounded large basic input-->
+      </div>
+
+      <div class="col-span-8 lg:col-span-12">
+        <!-- Component: Plain base size disabled textarea -->
+        <div class="relative">
+          <textarea
+            id="details"
+            type="text"
+            name="details"
+            rows="3"
+            placeholder="Write your message"
+            class="relative w-full px-4 py-2 text-sm placeholder-transparent transition-all border-b outline-none focus-visible:outline-none peer border-slate-200 text-slate-500 autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
+          >{{ car.description }}</textarea>
+          <label
+            for="details"
+            class="cursor-text peer-focus:cursor-default absolute left-2 -top-3 z-[1] px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
+          >
+            Description
+          </label>
+          <small
+            class="absolute flex justify-between w-full px-4 py-1 text-xs transition text-slate-400 peer-invalid:text-pink-500"
+          >
+            <span> Write detailed info here </span>
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="flex justify-center mt-10">
+      <button
+        class="submit inline-flex items-center justify-center h-12 gap-2 px-20 text-sm font-medium tracking-wide transition duration-300 border rounded shadow-lg focus-visible:outline-none whitespace-nowrap border-emerald-500 text-emerald-500 shadow-emerald-200 hover:border-emerald-600 hover:text-emerald-600 focus:border-emerald-700 focus:text-emerald-700 hover:shadow-md hover:shadow-emerald-200 focus:shadow-md focus:shadow-emerald-200 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:text-emerald-300 disabled:shadow-none"
+      >
+        <span>Update Car Info</span>
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock main_area %}
