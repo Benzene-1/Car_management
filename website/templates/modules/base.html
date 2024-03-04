@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock title %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{% block title %}{% endblock title %}</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  <body class="flex w-full min-h-screen gap-2">
+    <section class="sidebar w-1/4 p-4">
+      {% include 'modules/sidebar.html' %}
+    </section>
 
-<body class="flex w-full min-h-screen gap-2">
+    {% if template == 'full' %}
 
-  <section class="sidebar w-1/4 p-4">
-    {% include 'modules/sidebar.html' %}
+    <section class="flex flex-col w-full mt-24 mr-20">
+      {% block main_area_full %} {% endblock main_area_full %}
+    </section>
 
-  </section>
+    {% else %}
 
-  <section class="flex flex-col w-2/4 mt-24 ">
-    {% block main_area %}
-    
-    {% endblock main_area %}
-  </section>
+    <section class="flex flex-col w-2/4 mt-24">
+      {% block main_area %} {% endblock main_area %}
+    </section>
+    {% endif %}
+  </body>
 
-</body>
-
-<html>
+  <html></html>
+</html>

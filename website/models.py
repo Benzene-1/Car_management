@@ -15,12 +15,11 @@ class User(db.Model, UserMixin):
         print("User saved!")
         db.session.add(self)
         db.session.commit()
-        
+
         print("Creating card...")
         self.create_card()
         print("Card created!")
         print("User created!")
-        
 
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
@@ -54,6 +53,24 @@ class User(db.Model, UserMixin):
     def get_cars_count(self):
         return len(Car.query.filter_by(user_id=self.id).all())
 
+    def get_card_number(self):
+        number = Card.query.filter_by(user_id=self.id).first().card_number
+        return ' '.join([number[i:i+4] for i in range(0, len(number), 4)])
+
+    def get_card_expiry_date(self):
+        return Card.query.filter_by(user_id=self.id).first().expiry_date
+    
+    def get_card_cvv(self):
+        return Card.query.filter_by(user_id=self.id).first().cvv
+    
+    def get_card_holder(self):
+        return Card.query.filter_by(user_id=self.id).first().card_holder
+    
+    def get_card_balance(self):
+        return Card.query.filter_by(user_id=self.id).first().balance
+    
+    
+    
     def create_card(self):
         while True:
             id = ''.join(random.choices(
@@ -63,8 +80,8 @@ class User(db.Model, UserMixin):
                 break
 
         while True:
-            first_digit = str(random.choice(range(1, 10)))  
-            other_digits = ''.join(random.choices(string.digits, k=15)) 
+            first_digit = str(random.choice(range(1, 10)))
+            other_digits = ''.join(random.choices(string.digits, k=15))
             card_number = first_digit + other_digits
             if not card:
                 break
@@ -128,6 +145,8 @@ class Car(db.Model):
     description = db.Column(db.String(150), nullable=True)
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    
+    status = db.Column(db.String(150), default='Available')
 
     def get_owner_name(self):
         return User.query.filter_by(id=self.user_id).first()

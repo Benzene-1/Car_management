@@ -1,0 +1,42 @@
+{% extends "modules/base.html" %} {% block main_area_full %}
+<div class="max-h-[800px] w-full overflow-x-auto">
+  <div class="grid grid-cols-4 grid-rows-3 gap-3 w-full overflow-auto">
+    {% for car in cars %}
+    <form action="{{ url_for('seller.make_payment')}}" method="post">
+      <div
+        class="overflow-hidden bg-white rounded shadow-md text-slate-500 shadow-slate-200"
+      >
+        <!-- Image -->
+        <figure>
+          <img
+            src="https://picsum.photos/id/493/800/600"
+            alt="card image"
+            class="aspect-video w-full"
+          />
+        </figure>
+        <!-- Body-->
+        <div class="p-6">
+          <header class="mb-4">
+            <h3 class="text-xl font-medium text-slate-700">{{car.title}}</h3>
+            <p class="text-slate-400">Price: {{car.price}} BDT</p>
+          </header>
+          <p>Make: {{car.make}}, Model: {{car.model}}</p>
+          <p>Transmisison: {{car.transmission}}, Fuel: {{car.fuel_type}}</p>
+          <p>Mileage: {{car.mileage}}Km, Color: {{car.color}}</p>
+        </div>
+        <!-- Action base sized basic button -->
+        <div class="flex justify-end p-6 pt-0">
+          <button
+            class="inline-flex items-center justify-center w-full h-10 gap-2 px-5 text-sm font-medium tracking-wide text-white transition duration-300 rounded focus-visible:outline-none whitespace-nowrap bg-emerald-500 hover:bg-emerald-600 focus:bg-emerald-700 disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
+          >
+          <input type="hidden" name="car_id" value="{{car.id}}">
+            <span>Book Now</span>
+          </button>
+        </div>
+      </div>
+    </form>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock main_area_full %}
