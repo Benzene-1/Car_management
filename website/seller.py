@@ -13,7 +13,7 @@ seller = Blueprint('seller', __name__, template_folder='templates/seller')
 @seller.route('/make-payment', methods=['GET', 'POST'])
 def make_payment():
     if request.method == 'POST':
-
+        print(request.form)
         car_id = request.form.get('car_id', None)
         is_payment = request.form.get('payment', None)
         if car_id is not None and is_payment is None:
@@ -21,19 +21,14 @@ def make_payment():
             print(f"Forwarded from car_id: {car_id} to make payment page...")
             print("-x-" * 20)
 
-
             car = Car.query.get(car_id)
             print(f"Car: {car}")
             return render_template('make_payment.html', car=car)
 
-        if is_payment is not None:
+        if is_payment is not None and car_id is not None:
             print("-x-" * 20)
             print(f"Payment request received...")
             print("-x-" * 20)
-
-
-            # ImmutableMultiDict([('payment', 'True'), ('card_number', '1234'), ('expiry', '1234'), ('cvv', '1234')])
-            # Get Card, Expiry and CVV then check and process payment
             card_number = request.form.get('card_number', None)
             expiry = request.form.get('expiry', None)
             cvv = request.form.get('cvv', None)
@@ -43,20 +38,22 @@ def make_payment():
                 is_valid_card = Card.query.filter_by(
                     card_number=card_number).first()
                 if is_valid_card:
-                    if all([is_valid_card.expiry == expiry, is_valid_card.cvv == cvv]):
+                    if all([is_valid_card.expiry_date == expiry, is_valid_card.cvv == cvv]):
+                        car = Car.query.get(car_id)
                         print(f"Card Info Matched...")
                         print(f"Debiting {car.price} from {current_user}")
-                        
+
                         user = User.query.get(current_user.id)
-                        user.balance -= car.price
+                        balance = int(user.balance)
+                        new_balance = balance - int(car.price)
+                        user.balance = new_balance
                         db.session.commit()
                         print(f"Payment successful...")
-                        
-                        car = Car.query.get(car_id)
+
                         car.status = "Booked"
                         db.session.commit()
                         print(f"Car status updated to Booked...")
-                        
+
                         return redirect(url_for('seller.my_invoices'))
                     else:
                         print(f"Card Info Mismatch")

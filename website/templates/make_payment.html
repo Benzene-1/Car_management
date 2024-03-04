@@ -37,6 +37,11 @@
                     Amount: {% if car %}{{car.price}} {% else %} N/A {% endif %}
                   </h1>
                   <input type="hidden" name="payment" value="True" />
+                  {% if car %}<input
+                    type="hidden"
+                    name="car_id"
+                    value="{{car.id}}"
+                  />{% endif %}
                 </div>
               </div>
               <div class="divide-y divide-gray-200">
