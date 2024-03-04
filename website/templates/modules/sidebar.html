@@ -96,7 +96,7 @@
         <ul class="flex flex-col flex-1 gap-1 py-3">
           <li class="px-3">
             <a
-              href="/"
+              href="{{url_for('views.dashboard')}}"
               class="flex items-center gap-3 p-3 transition-colors rounded text-slate-700 hover:text-emerald-500 hover:bg-emerald-50 focus:bg-emerald-50 aria-[current=page]:text-emerald-500 aria-[current=page]:bg-emerald-50"
             >
               <div class="flex items-center self-center">
@@ -126,7 +126,7 @@
           </li>
           <li class="px-3">
             <a
-              href="#"
+              href="{{url_for('seller.my_cars')}}"
               class="flex items-center gap-3 p-3 transition-colors rounded text-slate-700 hover:text-emerald-500 hover:bg-emerald-50 focus:bg-emerald-50 aria-[current=page]:text-emerald-500 aria-[current=page]:bg-emerald-50"
               aria-current="page"
             >
@@ -156,13 +156,13 @@
               <div
                 class="flex flex-col items-start justify-center flex-1 w-full gap-0 overflow-hidden text-sm truncate"
               >
-                Analytics
+                My Cars
               </div>
             </a>
           </li>
           <li class="px-3">
             <a
-              href="#"
+              href="{{url_for('seller.create_listing')}}"
               class="flex items-center gap-3 p-3 transition-colors rounded text-slate-700 hover:text-emerald-500 hover:bg-emerald-50 focus:bg-emerald-50 aria-[current=page]:text-emerald-500 aria-[current=page]:bg-emerald-50"
             >
               <div class="flex items-center self-center">
@@ -186,7 +186,7 @@
               <div
                 class="flex flex-col items-start justify-center flex-1 w-full gap-0 overflow-hidden text-sm truncate"
               >
-                Data Sources
+                Add a Car Listing
               </div>
             </a>
           </li>

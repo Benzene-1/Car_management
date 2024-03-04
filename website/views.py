@@ -9,3 +9,6 @@ views = Blueprint('views', __name__, template_folder='templates/regular')
 def index():
     return render_template('index.html')
 
+@views.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
