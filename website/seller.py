@@ -5,7 +5,6 @@ from flask_login import login_required, current_user
 from flask import url_for
 from .models import Car, User, Card
 from . import db
-from .views import views
 
 seller = Blueprint('seller', __name__, template_folder='templates/seller')
 
@@ -27,20 +26,20 @@ def make_payment():
 
         if is_payment is not None and car_id is not None:
             print("-x-" * 20)
-            print(f"Payment request received...")
+            print("Payment request received...")
             print("-x-" * 20)
             card_number = request.form.get('card_number', None)
             expiry = request.form.get('expiry', None)
             cvv = request.form.get('cvv', None)
             print(f"Card: {card_number}, Expiry: {expiry}, CVV: {cvv}")
             if card_number and expiry and cvv:
-                print(f"Processing payment...")
+                print("Processing payment...")
                 is_valid_card = Card.query.filter_by(
                     card_number=card_number).first()
                 if is_valid_card:
                     if all([is_valid_card.expiry_date == expiry, is_valid_card.cvv == cvv]):
                         car = Car.query.get(car_id)
-                        print(f"Card Info Matched...")
+                        print("Card Info Matched...")
                         print(f"Debiting {car.price} from {current_user}")
 
                         user = User.query.get(current_user.id)
@@ -48,20 +47,20 @@ def make_payment():
                         new_balance = balance - int(car.price)
                         user.balance = new_balance
                         db.session.commit()
-                        print(f"Payment successful...")
+                        print("Payment successful...")
 
                         car.status = "Booked"
                         db.session.commit()
-                        print(f"Car status updated to Booked...")
+                        print("Car status updated to Booked...")
 
                         return redirect(url_for('seller.my_invoices'))
                     else:
-                        print(f"Card Info Mismatch")
+                        print("Card Info Mismatch")
                 else:
-                    print(f"Invalid payment details")
+                    print("Invalid payment details")
 
             else:
-                print(f"Invalid payment details")
+                print("Invalid payment details")
 
         return render_template('make_payment.html')
     return render_template('make_payment.html')
@@ -109,7 +108,7 @@ def create_listing():
         engine = request.form.get('engine', None)
         description = request.form.get('details', None)
         try:
-            print(f"Creating a new car...")
+            print("Creating a new car...")
             new_car = Car(
                 title=title,
                 make=make,
@@ -152,7 +151,7 @@ def edit_listing(id):
         car.engine = request.form.get('engine', None)
         car.description = request.form.get('details', None)
         try:
-            print(f"Editing car...")
+            print("Editing car...")
             db.session.commit()
             print(f"Car edited: {car} by {current_user}")
         except Exception as e:
@@ -161,3 +160,8 @@ def edit_listing(id):
         return redirect(url_for('views.index'))
 
     return render_template('edit_car.html', car=car)
+
+
+@seller.route('/test', methods=['GET', 'POST'])
+def test():
+    return render_template('signup.html')

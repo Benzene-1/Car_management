@@ -1,0 +1,77 @@
+{% extends "modules/base.html" %} {% block title %} My Listings {% endblock
+title %} {% block main_area %}
+<h1 class="mb-10">Users:</h1>
+<div class="container flex flex-col w-full">
+    <!-- Component: Responsive Table -->
+    <table class="w-full overflow-y text-left border border-separate rounded border-slate-200" cellspacing="0">
+        <tbody>
+            <tr>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    ID
+                </th>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    First Name
+                </th>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    Last Name
+                </th>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    Balance
+                </th>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    Active Status
+                </th>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    Modify
+                </th>
+            </tr>
+            {% for user in users %}
+            <tr class="block border-b sm:table-row last:border-b-0 border-slate-200 sm:border-none">
+                <td data-th="ID"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {{ user.id }}
+                </td>
+                <td data-th="First Name"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {{ user.first_name }}
+                </td>
+                <td data-th="Last Name"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {{ user.last_name }}
+                </td>
+                <td data-th="Balance"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {{ user.balance }}
+                </td>
+                <td data-th="Active Status"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {{ user.active_status }}
+                </td>
+                <td data-th="Modify"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    <div hx-target="this" hx-swap="outerHTML">
+                        <select name="select" hx-post="{{ url_for('admin.update_user_status', id=user.id) }}"
+                            hx-trigger="change">
+                            <option value="active" {% if user.active_status=='active' %}selected{% endif %}>Active
+                            </option>
+                            <option value="inactive" {% if user.active_status=='inactive' %}selected{% endif %}>Inactive
+                            </option>
+                            <option value="suspended" {% if user.active_status=='suspended' %}selected{% endif %}>
+                                Suspended</option>
+                        </select>
+                    </div>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- End Responsive Table -->
+</div>
+{% endblock main_area %}

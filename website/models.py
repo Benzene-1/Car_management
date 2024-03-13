@@ -29,6 +29,7 @@ class User(db.Model, UserMixin):
     date_created = db.Column(db.DateTime(timezone=True), default=func.now())
     balance = db.Column(db.Integer, default=0)
     subscription = db.Column(db.String(150), nullable=True)
+    active_status = db.Column(db.String(150), default='Active')
 
     # User Type:
     # 1. Admin
@@ -151,6 +152,21 @@ class Car(db.Model):
     def get_owner_name(self):
         return User.query.filter_by(id=self.user_id).first()
 
+class CarRequest(db.Model):
+    # ImmutableMultiDict([('title', 'BMW R10'), ('make', 'BMW'), ('model', 'RED'), ('year', '2020'), ('color', 'RED'), ('details', 'link-here')])
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(150), nullable=True)
+    make = db.Column(db.String(150), nullable=True)
+    model = db.Column(db.String(150), nullable=True)
+    year = db.Column(db.String(150), nullable=True)
+    color = db.Column(db.String(150), nullable=True)
+    details = db.Column(db.String(150), nullable=True)
+    date_created = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    status = db.Column(db.String(150), default='Pending')
+
+
+
 
 class Card(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -162,6 +178,9 @@ class Card(db.Model):
 
     def get_card_balance(self):
         return User.query.filter_by(id=self.user_id).first().balance
+    
+    def get_card_number(self):
+        return self.card_number
 
     def __str__(self) -> str:
         return f'{self.card_holder} <{self.card_number}>'
