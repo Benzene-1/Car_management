@@ -1,0 +1,68 @@
+{% extends "modules/base.html" %} {% block title %} My Listings {% endblock
+title %} {% block main_area %}
+<h1 class="mb-10">Own Cars</h1>
+<div class="container flex flex-col">
+    <!-- Component: Responsive Table -->
+    <table class="w-full overflow-x-auto text-left border border-separate rounded border-slate-200" cellspacing="0">
+        <tbody>
+            <tr>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    ID
+                </th>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    Name
+                </th>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    Manufacturer
+                </th>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    Quantity
+                </th>
+                <th scope="col"
+                    class="hidden h-12 px-6 text-sm font-medium border-l sm:table-cell first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100">
+                    Status
+                </th>
+            </tr>
+            {% for component in my_components%}
+            <tr class="block border-b sm:table-row last:border-b-0 border-slate-200 sm:border-none">
+                <td data-th="Name"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {{component.id}}
+                </td>
+                <td data-th="Title"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {{component.component_name}}
+                </td>
+                <td data-th="Company"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {{component.manufacturer}}
+                </td>
+                <td data-th="Role"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    {{component.status}}
+                </td>
+                <td data-th="Modify"
+                    class="before:w-24 before:inline-block before:font-medium before:text-slate-700 before:content-[attr(data-th)':'] sm:before:content-none flex items-center sm:table-cell h-12 px-6 text-sm transition duration-300 sm:border-t sm:border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500">
+                    <div hx-target="this" hx-swap="outerHTML">
+                        <select name="select" hx-post="{{ url_for('seller.update_component_status', id=component.id) }}"
+                            hx-trigger="change">
+                            <option value="Imported" {% if component.status=='Imported' %}selected{% endif %}>Imported
+                            </option>
+                            <option value="Requested" {% if component.status=='Requested' %}selected{% endif %}>Requested
+                            </option>
+                            <option value="Failed" {% if component.status=='Failed' %}selected{% endif %}>
+                                Failed</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- End Responsive Table -->
+</div>
+{% endblock main_area %}

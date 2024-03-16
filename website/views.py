@@ -1,14 +1,14 @@
-from flask import Blueprint
-from flask import render_template
+from flask import Blueprint, redirect, render_template
+
+views = Blueprint("views", __name__, template_folder="templates/regular")
 
 
-views = Blueprint('views', __name__, template_folder='templates/regular')
-
-
-@views.route('/')
+@views.route("/")
 def index():
-    return render_template('index.html')
+    return redirect("dashboard")
+    # return render_template('index.html')
 
-@views.route('/dashboard')
+
+@views.route("/dashboard")
 def dashboard():
-    return render_template('dashboard.html')
+    return render_template("dashboard.html")

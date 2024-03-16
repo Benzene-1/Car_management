@@ -1,0 +1,129 @@
+{% extends "modules/base.html" %} {% block title %} Create Listing {% endblock
+title %} {% block main_area %}
+<div class="max-h-[800px] w-full overflow-x-auto">
+  <div class="grid grid-cols-4 grid-rows-3 gap-3 w-full overflow-auto">
+    {% for car in cars %}
+    <form action="" method="post">
+      <div class="w-80 bg-white shadow rounded">
+        <div
+          class="h-48 w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center"
+          style="
+            background-image: url('https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        >
+          <div class="flex justify-between">
+            <input type="checkbox" />
+            <button class="text-white hover:text-blue-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+            </button>
+          </div>
+          <div>
+            <span
+              class="uppercase text-xs bg-green-50 p-0.5 border-green-500 border rounded text-green-700 font-medium select-none"
+              name="car_id"
+            >
+              {{car.id}}
+            </span>
+          </div>
+          <input type="hidden" name="car_id" value="{{car.id}}" />
+        </div>
+        <div class="p-4 flex flex-col items-center">
+          <p class="text-gray-400 font-light text-xs text-center">
+            {{car.make}}
+          </p>
+          <h1 class="text-gray-800 text-center mt-1">{{car.title}}</h1>
+          <p class="text-center text-gray-800 mt-1">
+            Current Bid: {{car.current_bid}}
+          </p>
+          <div class="inline-flex items-center mt-2">
+            <a
+              class="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
+              onclick="document.getElementById('bid_count').innerHTML = parseInt(document.getElementById('bid_count').innerHTML) - 10000; document.getElementById('bid_amount').value = parseInt(document.getElementById('bid_count').innerHTML)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M20 12H4"
+                />
+              </svg>
+            </a>
+            <div
+              class="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none"
+              id="bid_count"
+              name="bid_count"
+            >
+              {{car.current_bid}}
+            </div>
+            <input
+              type="hidden"
+              id="bid_amount"
+              name="bid_amount"
+              value="{{car.id}}"
+            />
+
+            <a
+              class="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-1 border-r border-gray-200"
+              onclick="document.getElementById('bid_count').innerHTML = parseInt(document.getElementById('bid_count').innerHTML) + 10000; document.getElementById('bid_amount').value = parseInt(document.getElementById('bid_count').innerHTML)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 4v16m8-8H4"
+                />
+              </svg>
+            </a>
+          </div>
+          <button
+            class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-center justify-center"
+          >
+            Bid
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 ml-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </form>
+    {% endfor %}
+  </div>
+</div>
+{% endblock main_area %}
